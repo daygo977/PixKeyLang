@@ -1,0 +1,75 @@
+Program:
+    commands *= Command
+;
+
+Command:
+    VarDeclare | Print | IfStmt | WhileStmt | ForStmt | Assignment
+;
+
+VarDeclare:
+    'let' name=ID '=' value=Expr
+;
+
+Assignment:
+    var=ID '=' value=Expr
+;
+
+Print:
+    'print' value=Expr
+;
+
+Expr:
+    left=Term ( op=AddSubOp right=Term )*
+;
+
+AddSubOp:
+    '+' | '-'
+;
+
+Term:
+    left=Factor ( op=MulDivOP right=Factor)*
+;
+
+MulDivOP:
+    '*' | '//' | '/' | '%'
+;
+
+Factor:
+    base=Primary ( '^' exponent=Primary )?
+;
+
+Primary:
+    Int | Var | Str | '(' Expr ')'
+;
+
+Var: name=ID;
+Int: value=INT;
+Str: value=STRING;
+
+ComparisonOp:
+    '==' | '!=' | '<=' | '>=' | '<' | '>'
+;
+
+Condition:
+    left=Expr op=ComparisonOp right=Expr
+;
+
+IfStmt:
+    'if' cond=Condition 'then'
+        commands+=Command*
+    ('else' elseCommands+=Command*)?
+    'end'
+;
+
+WhileStmt:
+    'while' cond=Condition 'do'
+        commands+=Command*
+    'end'
+;
+
+ForStmt:
+    'for' var=ID 'in' start=Expr 'to' end=Expr 'do'
+        commands+=Command*
+    'end'
+;
+

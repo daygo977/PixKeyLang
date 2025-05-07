@@ -1,0 +1,91 @@
+
+    digraph textX {
+    fontname = "Bitstream Vera Sans"
+    fontsize = 8
+    node[
+        shape=record,
+        style=filled,
+        fillcolor=aliceblue
+    ]
+    nodesep = 0.3
+    edge[dir=black,arrowtail=empty]
+
+
+2488124212960[ label="{Program|}"]
+
+2488123836688[ label="{*Command|}"]
+
+2488123838288[ label="{VarDeclare|name: ID\l}"]
+
+2488123662128[ label="{Assignment|var: ID\l}"]
+
+2488123662736[ label="{Print|}"]
+
+2488123535248[ label="{Expr|op: optional\<list[AddSubOp]\>\l}"]
+
+2488123484880[ label="{Term|op: optional\<list[MulDivOP]\>\l}"]
+
+2488123501648[ label="{Factor|}"]
+
+2488098075856[ label="{*Primary|}"]
+
+2488098076096[ label="{Var|name: ID\l}"]
+
+2488124131376[ label="{Int|value: INT\l}"]
+
+2488124131152[ label="{Str|value: STRING\l}"]
+
+2488097775376[ label="{Condition|op: ComparisonOp\l}"]
+
+2488097774416[ label="{IfStmt|}"]
+
+2488123788816[ label="{WhileStmt|}"]
+
+2488123790224[ label="{ForStmt|var: ID\l}"]
+
+
+
+2488124212960 -> 2488123836688[arrowtail=diamond, dir=both, headlabel="commands 0..*"]
+2488123836688 -> 2488123838288 [dir=back]
+2488123836688 -> 2488123662736 [dir=back]
+2488123836688 -> 2488097774416 [dir=back]
+2488123836688 -> 2488123788816 [dir=back]
+2488123836688 -> 2488123790224 [dir=back]
+2488123836688 -> 2488123662128 [dir=back]
+2488123838288 -> 2488123535248[arrowtail=diamond, dir=both, headlabel="value "]
+2488123662128 -> 2488123535248[arrowtail=diamond, dir=both, headlabel="value "]
+2488123662736 -> 2488123535248[arrowtail=diamond, dir=both, headlabel="value "]
+2488123535248 -> 2488123484880[arrowtail=diamond, dir=both, headlabel="left "]
+2488123535248 -> 2488123484880[arrowtail=diamond, dir=both, headlabel="right 0..*"]
+2488123484880 -> 2488123501648[arrowtail=diamond, dir=both, headlabel="left "]
+2488123484880 -> 2488123501648[arrowtail=diamond, dir=both, headlabel="right 0..*"]
+2488123501648 -> 2488098075856[arrowtail=diamond, dir=both, headlabel="base "]
+2488123501648 -> 2488098075856[arrowtail=diamond, dir=both, headlabel="exponent "]
+2488098075856 -> 2488124131376 [dir=back]
+2488098075856 -> 2488098076096 [dir=back]
+2488098075856 -> 2488124131152 [dir=back]
+2488098075856 -> 2488123535248 [dir=back]
+2488097775376 -> 2488123535248[arrowtail=diamond, dir=both, headlabel="left "]
+2488097775376 -> 2488123535248[arrowtail=diamond, dir=both, headlabel="right "]
+2488097774416 -> 2488097775376[arrowtail=diamond, dir=both, headlabel="cond "]
+2488097774416 -> 2488123836688[arrowtail=diamond, dir=both, headlabel="commands 1..*"]
+2488097774416 -> 2488123836688[arrowtail=diamond, dir=both, headlabel="elseCommands 1..*"]
+2488123788816 -> 2488097775376[arrowtail=diamond, dir=both, headlabel="cond "]
+2488123788816 -> 2488123836688[arrowtail=diamond, dir=both, headlabel="commands 1..*"]
+2488123790224 -> 2488123535248[arrowtail=diamond, dir=both, headlabel="start "]
+2488123790224 -> 2488123535248[arrowtail=diamond, dir=both, headlabel="end "]
+2488123790224 -> 2488123836688[arrowtail=diamond, dir=both, headlabel="commands 1..*"]
+match_rules [ shape=plaintext, label=< <table>
+	<tr>
+		<td><b>AddSubOp</b></td><td>+|-</td>
+	</tr>
+	<tr>
+		<td><b>ComparisonOp</b></td><td>==|!=|&lt;=|&gt;=|&lt;|&gt;</td>
+	</tr>
+	<tr>
+		<td><b>MulDivOP</b></td><td>*|//|/|%</td>
+	</tr>
+</table> >]
+
+
+}
